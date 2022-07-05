@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href=" {{ url_for('static',filename='style.css') }} " />
+  </head>
+  <body>
+
+<div class="flash_container">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class="flash-green">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+        <span onclick="this.parentElement.style.display='none';" >&times;</span>
+      </ul>
+      {% endif %}
+      {% endwith %}
+  </div>
+
+  <div class="flash_container">
+      {% if alert %}
+      <div class="flash">
+        <span class="alert_message" >{{ alert }}</span>
+        <span onclick="this.parentElement.style.display='none';" >&times;</span>
+      </div>
+      {% endif %}
+</div>
+      
+  <div class="container">
+      <!-- header START -->
+      <header>
+        <div class="header">
+          <h1>Log in</h1>
+        </div>
+      </header>
+      <!-- header END -->
+
+      <!-- main START -->
+      <main>
+        <form action="/login" method="post">
+
+          <div class="media-body">
+            {{form.hidden_tag() }}
+            <div>
+              {{form.username(placeholder="Username")}}
+            </div>
+            <div>
+              {{form.password(placeholder="Password" )}}
+            </div>
+            <div>
+              {{form.submit( value="SING IN")}}
+            </div>
+            <div class="footer-form">
+              <div>
+                <input id="checkbox" type="checkbox" />
+                <label for="checkbox"> Remember Me </label>
+              </div>
+              <div>
+                <h5>
+                  <a href="/register"> Does'nt have an account? Register </a>
+                </h5>
+              </div>
+            </div>
+          </div>
+        </form>
+        </main>
+        <!-- main END -->
+
+      <!-- footer START -->
+      <footer>
+        <h3>-- Or Login With --</h3>
+        <div class="footer">
+          <div>
+            <button class="button">Twitter</button>
+          </div>
+          <div>
+            <button class="button">Instagram</button>
+          </div>
+        </div>
+      </footer>
+      <!-- footer END -->
+    </div>
+  </body>
+</html>
